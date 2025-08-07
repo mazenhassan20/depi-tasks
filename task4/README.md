@@ -90,3 +90,22 @@ Hello from hello.sh 🎉
 ```
 
 ---
+
+
+# 🐳 Spring PetClinic with Docker
+
+## ⚙️ Step 1: Package the app
+
+```bash
+./mvnw package
+
+
+## 📦 Version 1: Basic Dockerfile – petclinic-app
+
+### 📝 Dockerfile
+
+```dockerfile
+FROM openjdk:17-jdk-slim
+COPY target/*.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
+---
