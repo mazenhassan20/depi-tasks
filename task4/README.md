@@ -111,7 +111,7 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 docker build -t petclinic-app .
 
 # Run
-docker run -p 8080:8080 petclinic-app
+docker run -p 8081:8080 petclinic-app
 
 # 📦 Version 2: With layers – petclinic-app2
 # Dockerfile
@@ -125,7 +125,7 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 docker build -t petclinic-app2 .
 
 # Run
-docker run -p 8080:8080 petclinic-app2
+docker run -p 8081:8080 petclinic-app2
 
 # 📦 Version 3: Separated RUN – petclinic-app3
 # Dockerfile
@@ -141,7 +141,7 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 docker build -t petclinic-app3 .
 
 # Run
-docker run -p 8080:8080 petclinic-app3
+docker run -p 8081:8080 petclinic-app3
 
 # 📦 Version 4: With .dockerignore – petclinic-app3ignore
 # Dockerfile
@@ -170,7 +170,7 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 docker build -t petclinic-app3ignore .
 
 # Run
-docker run -p 8080:8080 petclinic-app3ignore
+docker run -p 8081:8080 petclinic-app3ignore
 
 # 📊 Docker Image Size Comparison
 # docker images
