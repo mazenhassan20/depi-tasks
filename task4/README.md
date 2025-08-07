@@ -99,13 +99,86 @@ Hello from hello.sh 🎉
 ```bash
 ./mvnw package
 
+# 🧱 Docker Builds
 
-## 📦 Version 1: Basic Dockerfile – petclinic-app
-
-### 📝 Dockerfile
-
-```dockerfile
+# 📦 Version 1: Basic Dockerfile – petclinic-app
+# Dockerfile
 FROM openjdk:17-jdk-slim
 COPY target/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
----
+
+# Build
+docker build -t petclinic-app .
+
+# Run
+docker run -p 8080:8080 petclinic-app
+
+# 📦 Version 2: With layers – petclinic-app2
+# Dockerfile
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY target/*.jar app.jar
+RUN apt-get update && apt-get install -y curl && apt-get clean
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# Build
+docker build -t petclinic-app2 .
+
+# Run
+docker run -p 8080:8080 petclinic-app2
+
+# 📦 Version 3: Separated RUN – petclinic-app3
+# Dockerfile
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY target/*.jar app.jar
+RUN apt-get update
+RUN apt-get install -y curl
+RUN apt-get clean
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# Build
+docker build -t petclinic-app3 .
+
+# Run
+docker run -p 8080:8080 petclinic-app3
+
+# 📦 Version 4: With .dockerignore – petclinic-app3ignore
+# Dockerfile
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY target/*.jar app.jar
+RUN apt-get update
+RUN apt-get install -y curl
+RUN apt-get clean
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# .dockerignore
+# -------------------
+# .git
+# **
+# !target/
+# !target/*.jar
+# *.log
+# *.iml
+# .idea
+# Dockerfile
+# README.md
+# -------------------
+
+# Build
+docker build -t petclinic-app3ignore .
+
+# Run
+docker run -p 8080:8080 petclinic-app3ignore
+
+# 📊 Docker Image Size Comparison
+# docker images
+# REPOSITORY               TAG       IMAGE ID       CREATED          SIZE
+# petclinic-app3           latest    782a66b861f6   13 minutes ago   498MB
+# petclinic-app3ignore     latest    782a66b861f6   13 minutes ago   498MB
+# petclinic-app2           latest    029a57f23047   16 minutes ago   498MB
+# petclinic-app            latest    c0255514ad23   46 hours ago     475MB
+# py-script                latest    84c33ac2cc2c   34 minutes ago   78.1MB
+```
+
