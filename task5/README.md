@@ -74,10 +74,10 @@ docker run -d --name app3 --network net1 \
 docker ps
 ```
 ```
-CONTAINER ID   IMAGE           COMMAND                  STATUS          PORTS                    NAMES
-a1b2c3d4e5f6   petclinic-app3  "java -jar app.jar"      Up 2 minutes    0.0.0.0:8083->8080/tcp   app3
-b2c3d4e5f6g7   petclinic-app2  "java -jar app.jar"      Up 2 minutes    0.0.0.0:8082->8080/tcp   app2
-c3d4e5f6g7h8   petclinic-app   "java -jar app.jar"      Up 2 minutes    0.0.0.0:8081->8080/tcp   app1
-d4e5f6g7h8i9   mysql:8         "docker-entrypoint.s…"   Up 5 minutes    3306/tcp                 db-shared
-e5f6g7h8i9j0   mysql:8         "docker-entrypoint.s…"   Up 5 minutes    3306/tcp                 db3
+CONTAINER ID   IMAGE            COMMAND                  CREATED          STATUS          PORTS                                         NAMES
+8355f1871d70   petclinic-app3   "java -jar app.jar"      22 minutes ago   Up 22 minutes   0.0.0.0:8083->8080/tcp, [::]:8083->8080/tcp   app3
+d8b16e82a0a2   mysql:8          "docker-entrypoint.s…"   51 minutes ago   Up 51 minutes   3306/tcp, 33060/tcp                           db3
+c1863aca3d06   petclinic-app2   "java -jar app.jar"      52 minutes ago   Up 52 minutes   0.0.0.0:8082->8080/tcp, [::]:8082->8080/tcp   app2
+317bed5da58e   petclinic-app    "java -jar app.jar"      52 minutes ago   Up 52 minutes   0.0.0.0:8081->8080/tcp, [::]:8081->8080/tcp   app1
+5a2d5bad2203   mysql:8          "docker-entrypoint.s…"   54 minutes ago   Up 54 minutes   3306/tcp, 33060/tcp                           db-shared
 ```
