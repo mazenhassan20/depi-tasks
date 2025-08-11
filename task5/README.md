@@ -17,7 +17,6 @@ docker run -d --name db-shared --network net1 \
 ```
 ## ⏳ Step 3: Create Second Database (pet2)
 ```bash
-sleep 20
 docker exec -it db-shared mysql -uroot -proot -e "CREATE DATABASE pet2;"
 ```
 ## 🚀 Step 4: Run App1 (Connect to pet1)
