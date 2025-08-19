@@ -48,16 +48,18 @@ volumes:
 # 🔄 عمل Replica بتعديل الملف
 
 ```bash
-cat << 'EOL' > docker-compose.yml
+
 services:
   mysql:
-    image: mysql:8
-    restart: always
+    image: mysql:9.2
+    container_name: petclinic-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: petclinic
       MYSQL_USER: petclinic
       MYSQL_PASSWORD: petclinic
+    ports:
+      - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
@@ -84,7 +86,7 @@ networks:
 
 volumes:
   mysql_data:
-EOL
+
 ```
 
 # ⚡️ عمل Replica من غير تعديل الملف
