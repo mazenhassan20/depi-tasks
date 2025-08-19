@@ -7,16 +7,17 @@ nano docker-compose.yml
 # 📄 Docker Compose Content
 
 ```bash
-cat << 'EOL' > docker-compose.yml
 services:
   mysql:
-    image: mysql:8
-    restart: always
+    image: mysql:9.2
+    container_name: petclinic-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: petclinic
       MYSQL_USER: petclinic
       MYSQL_PASSWORD: petclinic
+    ports:
+      - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
@@ -24,6 +25,7 @@ services:
 
   petclinic:
     image: petclinic-app
+    container_name: petclinic-app
     environment:
       - SPRING_PROFILES_ACTIVE=mysql
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/petclinic
@@ -41,7 +43,6 @@ networks:
 
 volumes:
   mysql_data:
-EOL
 ```
 
 # 🔄 عمل Replica بتعديل الملف
