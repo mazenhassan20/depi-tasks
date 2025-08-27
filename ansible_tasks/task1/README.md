@@ -58,11 +58,10 @@ ssh mazen@192.168.139.128
 
 **Output:**
 
-```
 
-<img width="906" height="481" alt="Screenshot 2025-08-27 033051" src="https://github.com/user-attachments/assets/2aea05d5-ce2f-46a4-b0ea-817d74e37d52" />
 
-```
+![Screenshot](https://github.com/user-attachments/assets/2aea05d5-ce2f-46a4-b0ea-817d74e37d52)
+
 
 ---
 
@@ -143,19 +142,11 @@ ansible all -i /etc/ansible/hosts.ini -m ping
 
 **Output:**
 
-```
-192.168.139.128 | SUCCESS => {
-    "changed": false,
-    "ping": "pong"
-}
-```
+
+
+![SSH Key Generation Screenshot](https://github.com/user-attachments/assets/a36d1a95-1d99-4928-9e9f-04c06b66ea81)
+
 
 ---
 
-## **Final Notes**
 
-* Always ensure `openssh-server` is running on the managed node.
-* Use SSH key authentication for smooth automation.
-* Add Ansible bin path to system PATH when installed via pip.
-
-✅ **Ansible is now ready for automation tasks.**
