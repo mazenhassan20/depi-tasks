@@ -327,3 +327,77 @@ This instantly gives you nice charts (JVM memory, request rate, latency, etc.) w
 
 ---
 
+---
+
+## 🔧 Setting up Nexus as a Local Docker Registry
+
+### 1. Start Nexus with Docker
+
+Run Nexus inside a container and expose the required ports:
+
+```bash
+docker run -d \ --name nexus \ -p 8081:8081 \ -p 8083:8083 \ --restart unless-stopped \ sonatype/nexus3
+```
+---
+
+### 2. Initial Login to Nexus
+
+```bash
+docker exec -it nexus cat /nexus-data/admin.password
+```
+
+⚠️ Use the password text only (ignore “root”).
+After signing in with `admin`, you’ll be prompted to set a new password.
+
+---
+
+### 3. Create a Docker Repository
+
+From the Nexus dashboard:
+
+* create repository
+* Assign port **8083 (HTTP)**
+* This repository will act as a private registry on `localhost:8083`.
+
+---
+
+### 4. Allow Docker to Use the Registry
+
+Edit `/etc/docker/daemon.json`:
+
+```json
+{
+  "insecure-registries": ["localhost:8083"]
+}
+```
+
+```bash
+sudo systemctl restart docker
+```
+---
+
+### 5. Authenticate with Nexus Registry
+
+```bash
+docker login localhost:8083
+```
+
+Use your Nexus credentials (the one you set after the first login).
+
+---
+
+### 6. Build, Tag, and Push Your Image
+
+Tag an image for the Nexus registry:
+
+```bash
+docker tag petclinic-app localhost:8083/petclinic-app:1.0
+```
+
+Push the tagged image:
+
+```bash
+docker push localhost:8083/petclinic-app:1.0
+```
+
+
