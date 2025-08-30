@@ -1,4 +1,4 @@
-````markdown
+markdown
 # Spring PetClinic: WSL Control → Ubuntu VM (Ansible + Docker) — End-to-End Log
 
 This README captures exactly what we did — playbooks, commands, **real outputs**, errors, and fixes — from installing **Nginx via Ansible** on the VM to **running the app in Docker**.
@@ -248,3 +248,4 @@ http://192.168.139.128:8088/
 ```
 
 ---
+
