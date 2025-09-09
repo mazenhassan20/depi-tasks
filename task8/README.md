@@ -264,9 +264,5 @@ http://localhost:8087
 
 ---
 
-```
 
----
 
-تحبني أخلي الـ README ده **short & clean** (instructions سريعة زي أي repo) ولا تسيبه **detailed story** زي كده؟
-```
